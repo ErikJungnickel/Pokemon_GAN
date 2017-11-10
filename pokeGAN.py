@@ -198,7 +198,7 @@ def train():
     
     batch_num = int(samples_num / batch_size)
     total_batch = 0
-    sess = tf.Session()
+    sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
     saver = tf.train.Saver()
     sess.run(tf.global_variables_initializer())
     sess.run(tf.local_variables_initializer())
