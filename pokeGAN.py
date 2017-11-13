@@ -26,12 +26,12 @@ def lrelu(x, n, leak=0.2):
 
 def process_data():
     current_dir = os.getcwd()
-    # parent = os.path.dirname(current_dir)
-    pokemon_dir = os.path.join(current_dir, 'data')
+
+    pokemon_dir = os.path.join(current_dir, 'data/mnist')
     images = []
     for each in os.listdir(pokemon_dir):
         images.append(os.path.join(pokemon_dir, each))
-    # print images
+
     all_images = tf.convert_to_tensor(images, dtype=tf.string)
 
     images_queue = tf.train.slice_input_producer(
@@ -39,19 +39,14 @@ def process_data():
 
     content = tf.read_file(images_queue[0])
     image = tf.image.decode_jpeg(content, channels=CHANNEL)
-    # sess1 = tf.Session()
-    # print sess1.run(image)
-    image = tf.image.random_flip_left_right(image)
-    image = tf.image.random_brightness(image, max_delta=0.1)
-    image = tf.image.random_contrast(image, lower=0.9, upper=1.1)
-    # noise = tf.Variable(tf.truncated_normal(shape = [HEIGHT,WIDTH,CHANNEL], dtype = tf.float32, stddev = 1e-3, name = 'noise'))
-    # print image.get_shape()
+
+    # image = tf.image.random_flip_left_right(image)
+    # image = tf.image.random_brightness(image, max_delta=0.1)
+    # image = tf.image.random_contrast(image, lower=0.9, upper=1.1)
+
     size = [HEIGHT, WIDTH]
     image = tf.image.resize_images(image, size)
     image.set_shape([HEIGHT, WIDTH, CHANNEL])
-    # image = image + noise
-    # image = tf.transpose(image, perm=[2, 0, 1])
-    # print image.get_shape()
 
     image = tf.cast(image, tf.float32)
     image = image / 255.0
