@@ -12,13 +12,10 @@ numpy
 ```
 ## Usage
 ```
+Create 'data' folder
+Upload source jpg images to data folder
 python pokeGAN.py
 ```
-
-## example pokemon
-![image1](https://github.com/moxiegushi/pokeGAN/raw/master/images/Notes_1500532347861.jpeg)
-
-![image2](https://github.com/moxiegushi/pokeGAN/raw/master/images/Notes_1500532371830.jpeg)
 
 ## Credits
 
